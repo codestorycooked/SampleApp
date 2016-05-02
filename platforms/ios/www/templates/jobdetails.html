@@ -1,0 +1,129 @@
+<ion-view view-title="Request Details">
+    <ion-nav-buttons side="secondary">
+        <a class="button button-clear" ng-if="vm.isUserloggedin" ng-click="vm.favorite()">
+            <i class="icon" style="padding-top:5px" ng-class="(vm.IsFav==true)? 'fa fa-lg fa-star' : 'fa fa-lg fa-star-o'"></i>
+        </a>
+
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="row">
+
+            <div class="col">
+                <img ng-src="{{vm.data.mediaGalleries[0].fileName  && vm.getPicturePath(vm.data.mediaGalleries[0].fileName ) || ''}}"
+                ng-click="vm.showImage(vm.getPicturePath(vm.data.mediaGalleries[0].fileName))" ng-class="(!vm.data.mediaGalleries[0].fileName) ? 'hideImg' : '' "
+                /></div>
+
+            <div class="col"><img ng-src="{{vm.data.mediaGalleries[1].fileName  && vm.getPicturePath(vm.data.mediaGalleries[1].fileName ) ||''}}"
+              ng-class="(!vm.data.mediaGalleries[1].fileName) ? 'hideImg' : '' " 
+                ng-click="vm.showImage(vm.getPicturePath(vm.data.mediaGalleries[1].fileName))" /></div>
+
+            <div class="col"><img ng-src="{{vm.data.mediaGalleries[2].fileName  && vm.getPicturePath(vm.data.mediaGalleries[2].fileName ) || ''}}"
+              ng-class="(!vm.data.mediaGalleries[2].fileName) ? 'hideImg' : '' " 
+                ng-click="vm.showImage(vm.getPicturePath(vm.data.mediaGalleries[2].fileName))" /></div>
+            <div class="col">
+                <img ng-src="{{vm.data.mediaGalleries[3].fileName  && vm.getPicturePath(vm.data.mediaGalleries[3].fileName ) || ''}}"
+                ng-class="(!vm.data.mediaGalleries[3].fileName) ? 'hideImg' : '' " ng-click="vm.showImage(vm.getPicturePath(vm.data.mediaGalleries[3].fileName))"
+                /></div>
+
+        </div>
+
+        <div class="list job-details">
+            <label class="item item-input">
+                <span class="input-label">Title</span>
+                <span class="input-label"><h3>{{vm.data.jobTitle}}</h3></span>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Category</span>
+                <span class="input-label"><h3 color="black">{{vm.data.jobCategory1.categoryName}}</h3></span>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Sub Category</span>
+
+                <p>
+                    <span ng-repeat="v in vm.subcat">
+              {{v.subCategoryName}}
+            </span>
+                </p>
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Work Quality</span>
+                <span class="input-label"><h3>{{vm.data.workQuality.qualityTitle}}</h3></span>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Job Description</span>
+
+                <p>
+                    {{vm.data.jobDescription}}
+                </p>
+            </label>
+
+            <label class="item item-input" ng-if="vm.data.isPhonePublic">
+                <span class="input-label">Contact Number</span>
+                <span class="input-label"><i class="icon ion-ios-telephone assertive"> {{vm.data.contactNumber}}</i></span>
+            </label>
+
+            <a href="#/app/map?lat={{vm.data.latitude}}&lng={{vm.data.longitude}}&name={{vm.data.jobTitle}}">
+                <label class="item item-input item-stacked-label" ng-if="vm.data.isAddressPublic">
+                    <span class="input-label">Address</span>
+
+                    <p>
+
+                        <i class="icon ion-ios-location assertive">
+
+
+              {{vm.data.address}} (click to show on map)</i>
+                    </p>
+
+                </label>
+            </a>
+
+            <label class="item item-input">
+                <span class="input-label">Zip Code</span>
+                <span class="input-label">{{vm.data.pincode}}</span>
+            </label>
+
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Time Constraints</span>
+
+                <p>{{vm.data.timeConstraint}}</p>
+            </label>
+        </div>
+        <!--<div class="row"  ng-hide="vm.isUser">
+      <div class="col">
+        <button class="button button-assertive button-full" style="font-size:small" ng-click="vm.showInterested()">Interested</button>
+      </div>
+      <div class="col">
+        <button class="button button-assertive button-full"  style="font-size:small" ng-click="vm.showCounter()">Counter</button>
+      </div>
+      <div class="col">
+        <button class="button button-assertive button-full"  style="font-size:small" ng-click="vm.showQuestions()">Questions</button>
+      </div>
+    </div>-->
+
+
+        </div>
+    </ion-content>
+    <nav ng-hide="vm.isUser" mfb-menu position="br" effect="zoomin" label="Menu" active-icon="ion-minus" resting-icon="ion-ios-list-outline"
+    toggling-method="click">
+        <!--<button mfb-button ng-click="vm.showInterested()" icon="ion-speakerphone" label="Interested"></button>-->
+        <button mfb-button ng-click="vm.showCounter()" icon="ion-loop" label="Respond to Request"></button>
+        <button mfb-button ng-click="vm.showQuestions()" icon="ion-help" label="Questions"></button>
+        <button mfb-button ng-click= "vm.showChat()" icon="ion-chatbubble" label="Private Chat"></button>
+    </nav>
+</ion-view>
+
+<style>
+    img {
+        width: 100%;
+        height: auto;
+        max-height: 100px;
+    }
+    
+    .hideImg {
+        display: none;
+    }
+</style>

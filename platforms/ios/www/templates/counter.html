@@ -1,0 +1,107 @@
+<ion-modal-view title="Counter Bid" ng-controller="CounterController as vm">
+  <ion-header-bar class="assertive-bg">
+    <h1 style="color:white"  class="title text-center">Counter</h1>
+    <a href="#" class="button button-clear" ng-click="vm.closeModal()"><i class="fa fa-lg fa-close"></i></a>
+  </ion-header-bar>
+  <ion-content>
+    <h4 class="text-center">Thank you</h2>
+      <p class="text-center" class="padding">Please indicate the earliest time/date when you like to start
+        the service .Additionally please add any clarifications to scope,service or cost. </p>
+
+      <ion-list>
+        <form name="jobsForm" novalidate="">
+          <ion-item class="text-center">
+            <p class="text-center">Start Date & Time</p>
+            <ionic-datepicker input-obj="vm.datepickerObject">
+              <button class="button button-sm button-clear" style="color:black"> {{vm.datepickerObject.inputDate |
+                date:vm.datepickerObject.dateFormat}}
+              </button>
+            </ionic-datepicker>
+            <ionic-timepicker input-obj="timePickerObject">
+              <button class="button button-sm button-clear" style="color:black">
+                <!-- <span date-string-to-epoch='{{timePickerObject.inputEpochTime}}'></span> -->
+                <standard-time-meridian etime='timePickerObject.inputEpochTime'></standard-time-meridian>
+              </button>
+            </ionic-timepicker>
+            </div>
+          </ion-item>
+
+          <ion-item class="text-center">
+            <p class="text-center">End Date & Time</p>
+            <ionic-datepicker input-obj="vm.datepickerObjectEnd">
+              <button class="button button-sm button-clear" style="color:black"> {{vm.datepickerObjectEnd.inputDate |
+                date:vm.datepickerObjectEnd.dateFormat}}
+              </button>
+            </ionic-datepicker>
+            <ionic-timepicker input-obj="timePickerObjectEnd">
+              <button class="button button-sm button-clear" style="color:black">
+                <!-- <span date-string-to-epoch='{{timePickerObjectEnd.inputEpochTime}}'></span> -->
+                <standard-time-meridian etime='timePickerObjectEnd.inputEpochTime'></standard-time-meridian>
+              </button>
+            </ionic-timepicker>
+            </div>
+          </ion-item>
+
+      </ion-list>
+
+      <div class="row">
+        <div class="col ">
+          <label class="item item-input"
+                 ng-class="{ 'has-errors' : jobsForm.laborcost.$invalid, 'no-errors' : jobsForm.laborcost.$valid}">
+            <input placeholder="Labor Cost" type="number" name="laborcost"
+                   ng-model="vm.jobsForm.laborcost" required ng-minlength="1" ng-maxlength="50">
+          </label>
+
+          <div class="error-container" ng-show="jobsForm.laborcost.$error"
+               ng-messages="jobsForm.laborcost.$error">
+            <div ng-messages-include="error-list.html"></div>
+          </div>
+        </div>
+        <!--<div class="col col-50">
+          <label class="item item-input"
+                 ng-class="{ 'has-errors' : jobsForm.materialcost.$invalid, 'no-errors' : jobsForm.materialcost.$valid}">
+            <input placeholder="Material's Budget." type="number" name="materialcost"
+                   ng-model="vm.jobsForm.materialcost" required ng-minlength="1" ng-maxlength="50">
+          </label>
+
+          <div class="error-container" ng-show="jobsForm.materialcost.$error"
+               ng-messages="jobsForm.materialcost.$error">
+            <div ng-messages-include="error-list.html"></div>
+          </div>
+        </div>-->
+      </div>
+
+
+      <label class="item item-input item-stacked-label"
+             ng-class="{ 'has-errors' : jobsForm.jobDescription.$invalid, 'no-errors' : jobsForm.jobDescription.$valid}">
+      <textarea
+        placeholder="Please enter any clarifications to Scope and/or Services to be provided."
+        type="text" name="jobDescription" rows="6" ng-model="vm.jobsForm.jobDescription" required
+        ng-minlength="5"></textarea>
+      </label>
+
+      <div class="error-container" ng-show="jobsForm.jobDescription.$error"
+           ng-messages="jobsForm.jobDescription.$error">
+        <div ng-messages-include="error-list.html"></div>
+      </div>
+
+      <ion-checkbox ng-model="vm.jobsForm.isChecked">Do you require transportation?</ion-checkbox>
+      <label class="item item-input item-stacked-label"
+             ng-class="{ 'has-errors' : jobsForm.address.$invalid, 'no-errors' : jobsForm.address.$valid}">
+      <textarea
+        placeholder="Write a your Address."
+        type="text" name="address" rows="6" ng-model="vm.jobsForm.address" required
+        ng-minlength="5"></textarea>
+      </label>
+
+      <div class="error-container" ng-show="jobsForm.address.$error"
+           ng-messages="jobsForm.address.$error">
+        <div ng-messages-include="error-list.html"></div>
+      </div>
+      <!--<ion-checkbox ng-model="isChecked">Show address?</ion-checkbox>-->
+      <button class="button button-full button-assertive" ng-click="vm.sendMessage()" ng-disabled="jobsForm.$invalid">
+        Send Message
+      </button>
+      </form>
+  </ion-content>
+</ion-modal-view>

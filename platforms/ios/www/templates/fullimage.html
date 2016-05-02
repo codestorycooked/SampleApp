@@ -1,0 +1,29 @@
+<ion-modal-view>
+
+    <ion-header-bar>
+        <h1 class="title">Photo</h1>
+        <button class="button button-clear" style="color:black" ng-click="closeFullImage()">Close</button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="row">
+            <div class="col">
+               
+                <ion-slide-box>
+                    <ion-slide ng-repeat="image in imageArray">
+                       
+                        <img class="fullImage" ng-src={{imageURL+image.fileName}} </ion-slide>
+                        
+                </ion-slide-box>
+
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>
+
+<style>
+    .fullImage {
+        width: 100%;
+        height: auto !important;
+        max-height: 100% !important;
+    }
+</style>

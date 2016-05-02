@@ -1,0 +1,31 @@
+<ion-view title="Upload photos" scroll="false" >
+	<ion-content>
+		<h4 class="text-center">Almost Done</h2><br>
+		<p class="text-center">Please upload pictures</p>
+
+    <div class="row text-center">
+      <div class="col"><img ng-src="{{vm.imagethumb[0]  && vm.imagethumb[0] || 'images/camera-outline.png'}}" ng-click="vm.showPictureOptions(0)"/></div>
+      <div class="col"><img ng-src="{{vm.imagethumb[1]  && vm.imagethumb[1] || 'images/camera-outline.png'}}" ng-click="vm.showPictureOptions(1)"/></div>
+      <div class="col"><img ng-src="{{vm.imagethumb[2]  && vm.imagethumb[2] || 'images/camera-outline.png'}}" ng-click="vm.showPictureOptions(2)"/></div>
+      <div class="col"><img ng-src="{{vm.imagethumb[3]  && vm.imagethumb[3] || 'images/camera-outline.png'}}" ng-click="vm.showPictureOptions(3)"/></div>
+    </div>
+		<p class="padding" style="font-size:10px;"> Note: Images will be compressed and depeding on image(s) it may take time to upload.</p>
+		<div class="row">
+			<div class="col">
+<button class="button button-assertive button-full" ng-click="vm.uploadImage()">Upload Images</button>
+			</div>
+			<div class="col">
+			<button class="button button-assertive button-full" ng-click="vm.laterUpload()">Upload Later</div></div>
+		</div>
+
+  </ion-content>
+</ion-view>
+
+<style>
+img{
+	width: 100%;
+	height: auto;
+	max-height:100px;
+
+}
+</style>

@@ -1,0 +1,41 @@
+<ion-modal-view title="Filter Results">
+    <ion-header-bar class="assertive-bg">
+        <button href="#" class="buttons button-clear " style="color:white;" ng-click="cancel()">
+              &nbsp;Close</button>
+        <h1 style="color:white;text-align:center" class="title">Filter Results</h1>
+        <button href="#" class="buttons button-clear " style="color:white;" ng-click="closeModal()">
+            Apply</button>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <div class="item item-divider assertive">
+                Select Sorting Order
+            </div>
+
+            <ion-radio ng-model="jobFiltermodal.date" ng-value="'1'">Show Latest</ion-radio>
+
+
+            <ion-radio ng-model="jobFiltermodal.date" ng-value="'0'">Show Nearest </ion-radio>
+            <ion-radio ng-model="jobFiltermodal.date" ng-value="'2'">Most Viewed </ion-radio>
+            <ion-radio ng-model="jobFiltermodal.date" ng-value="'3'">Most Interested </ion-radio>
+            <!--<div class="item item-divider assertive">
+                Enter Search
+            </div>
+            <label class="item item-input">
+                <input type="text" ng-model="jobFiltermodal.searchText" placeholder="What type of job you are looking for?">
+            </label>-->
+            <div class="item item-divider assertive">
+                Select Categories
+
+            </div>
+            <ion-scroll direction="y">
+                <div ng-repeat="item in categories">
+
+                    <ion-checkbox ng-click="selectedCategory(item.id)" class="checkbox-assertive">{{item.categoryName}}</ion-checkbox>
+                </div>
+            </ion-scroll>
+            <!--{{selectedCategories}} {{choice}}-->
+        </ion-list>
+
+    </ion-content>
+</ion-modal-view>

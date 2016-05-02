@@ -1,0 +1,39 @@
+<ion-view view-title="Profile">
+    <div class="bar bar-header bar-calm-900">
+    </div>
+    </div>
+    <ion-content>
+        <div class="hero" style="background-image: url('images/profilebg.jpg');">
+            <div class="content">
+                <div class="avatar" style="background-image: url('{{vm.profile[0].userPhoto}}');"></div>
+                <h3><a class="light">{{vm.profile[0].userName}}</a></h3><br/>
+                <!--<h4 class="light">{{vm.profile[0].userEmail}}</h4>-->
+            </div>
+        </div>
+        <!--<div class="tabs tabs-dark tabs-icon-top static">
+            <a ui-sref="app.activity" class="tab-item">
+                <i class="icon ion-arrow-graph-up-right"></i> Activity
+            </a>
+            <a ui-sref="app.friends" class="tab-item">
+                <i class="icon ion-android-people"></i> Friends
+            </a>
+            <a ui-sref="app.gallery" class="tab-item">
+                <i class="icon ion-images"></i> Followers
+            </a>
+        </div>-->
+       <ion-list>
+           <ion-item>Display Name:Manoj Aurora</ion-item>
+           <ion-item>Email:email@email.com</ion-item>
+           <ion-item>Date of Birth: 12/12/1212</ion-item>
+            <ion-item>Address: This is Address Field</ion-item>
+            
+           
+       </ion-list>
+    </ion-content>
+    <nav mfb-menu ui-sref="app.editprofile" position="br" effect="zoomin" label="hover here" active-icon="ion-edit" resting-icon="ion-edit" toggling-method="click">
+        
+    </nav>
+</ion-view>
+<style>
+   
+    </style>

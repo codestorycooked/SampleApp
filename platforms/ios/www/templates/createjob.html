@@ -1,0 +1,174 @@
+<ion-view title="Create Job">
+    <ion-content>
+        <div class="row text-center">
+            <div class="col"><img ng-src="{{vm.imagethumb[0]  && vm.imagethumb[0] || 'images/camera-outline.png'}}" ng-click="vm.showPictureOptions(0)"
+                /></div>
+            <div class="col"><img ng-src="{{vm.imagethumb[1]  && vm.imagethumb[1] || 'images/camera-outline.png'}}" ng-click="vm.showPictureOptions(1)"
+                /></div>
+            <div class="col"><img ng-src="{{vm.imagethumb[2]  && vm.imagethumb[2] || 'images/camera-outline.png'}}" ng-click="vm.showPictureOptions(2)"
+                /></div>
+            <div class="col"><img ng-src="{{vm.imagethumb[3]  && vm.imagethumb[3] || 'images/camera-outline.png'}}" ng-click="vm.showPictureOptions(3)"
+                /></div>
+        </div>
+        <p class="padding" style="font-size:10px;"> Note: Images will be compressed and depeding on image(s) it may take time to upload.</p>
+
+        <form name="jobsForm" novalidate="">
+            <div class="list padding">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Category
+                    </div>
+                    <select name="category" ng-model="vm.jobsForm.jobCategory" ng-change="vm.getSubCategories(vm.jobsForm.jobCategory)" required>
+                        <option value="" selected>Select</option>
+                        <option ng-repeat="item in vm.categories" value="{{item.id}}">{{item.categoryName}}</option>
+                    </select>
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.category.$error" ng-messages="jobsForm.category.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+
+
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Sub Category(s)
+                    </div>
+                    <select name="subcategory" multiple ng-model="vm.jobsForm.jobsSubCategory" required>
+
+                        <option ng-repeat="item in vm.subcategories" value="{{item.id}}">{{item.subCategoryName}}</option>
+                    </select>
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.subcategory.$error" ng-messages="jobsForm.subcategory.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+
+                <!--<label class="item item-input item-select">
+                    <div class="input-label">
+                        Work Quality
+                    </div>
+                    <select name="workQuality" ng-model="vm.jobsForm.workQualityID" required>
+                        <option value="" selected>Select</option>
+                        <option ng-repeat="item in vm.workQuality" value="{{item.id}}">{{item.qualityTitle}}</option>
+                    </select>
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.workQuality.$error" ng-messages="jobsForm.workQuality.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>-->
+
+                <label class="item item-input" ng-class="{ 'has-errors' : jobsForm.jobTitle.$invalid, 'no-errors' : jobsForm.jobtitle.$valid}">
+                    <input placeholder="What is the Title of the Job?" type="text" name="jobTitle" ng-model="vm.jobsForm.jobTitle" required ng-minlength="3"
+                    ng-maxlength="50">
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.jobTitle.$error" ng-messages="jobsForm.jobTitle.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+
+
+                <label class="item item-input item-stacked-label" ng-class="{ 'has-errors' : jobsForm.jobDescription.$invalid, 'no-errors' : jobsForm.jobDescription.$valid}">
+                    <textarea placeholder="Write a short description of job you are planing, any dimensions and equipment/tools required." type="text"
+                    name="jobDescription" rows="6" ng-model="vm.jobsForm.jobDescription" required ng-minlength="3"></textarea>
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.jobDescription.$error" ng-messages="jobsForm.jobDescription.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+                <label class="item item-input item-stacked-label">
+                    <p class="text-center">We are using your current location</p>
+                    <button class="button button-clear button-full" ng-click="vm.showAlternateAddress()">{{vm.AddresButtonText}}</button>
+
+                </label>
+
+                <!--<label class="item item-input" ng-class="{ 'has-errors' : jobsForm.contactNumber.$invalid, 'no-errors' : jobsForm.contactNumber.$valid}">
+                    <input placeholder="Contact Number" type="tel" name="contactNumber" ng-model="vm.jobsForm.contactNumber" required ng-minlength="3"
+                    ng-maxlength="15">
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.contactNumber.$error" ng-messages="jobsForm.contactNumber.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>-->
+
+                <!--<label class="item item-input item-stacked-label item-accordion" ng-class="{ 'has-errors' : jobsForm.address.$invalid, 'no-errors' : jobsForm.address.$valid}">
+                    <textarea placeholder="Write a your Address." type="text" name="address" rows="6" ng-model="vm.jobsForm.address" ng-minlength="3"></textarea>
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.address.$error" ng-messages="jobsForm.address.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+                <label class="item item-input" ng-class="{ 'has-errors' : jobsForm.pinCode.$invalid, 'no-errors' : jobsForm.pinCode.$valid}">
+                    <input placeholder="Enter Zip Code" type="tel" name="pinCode" ng-model="vm.jobsForm.pincode" required ng-minlength="3" ng-maxlength="7">
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.pinCode.$error" ng-messages="jobsForm.pinCode.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>-->
+
+                <!--<ion-checkbox ng-model="vm.jobsForm.isPhonePublic">Show Phone?</ion-checkbox>-->
+                <!--<ion-checkbox ng-model="vm.jobsForm.isAddressPublic">Show Address?</ion-checkbox>-->
+                <!--<ion-checkbox ng-model="vm.useLocation" ng-click="vm.getCurrentLocation()">Use Current Location?</ion-checkbox>-->
+
+
+                <label class="item item-input" ng-class="{ 'has-errors' : jobsForm.timeConstraint.$invalid, 'no-errors' : jobsForm.timeConstraint.$valid}">
+                    <input placeholder="What is your time Constraints?" type="text" name="timeConstraint" ng-model="vm.jobsForm.timeConstraint"
+                    required ng-minlength="3" ng-maxlength="50">
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.timeConstraint.$error" ng-messages="jobsForm.timeConstraint.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+
+
+
+                <label class="item item-input" ng-class="{ 'has-errors' : jobsForm.laborCost.$invalid, 'no-errors' : jobsForm.laborCost.$valid}">
+                    <input placeholder="Name Your Own Price" type="tel" name="laborCost" ng-model="vm.jobsForm.laborCost" required ng-minlength="1"
+                    ng-maxlength="5">
+                </label>
+
+                <div class="error-container" ng-show="jobsForm.laborCost.$error" ng-messages="jobsForm.laborCost.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+
+
+
+                <button type="submit" ng-click="vm.createJob()" ng-disabled="jobsForm.$invalid" class="button button-full button-assertive">
+                    Post Job
+                </button>
+
+            </div>
+        </form>
+
+    </ion-content>
+</ion-view>
+
+<script id="error-list.html" type="text/ng-template">
+    <div class="error" ng-message="required">
+        <i class="ion-information-circled"></i> This field is required!
+    </div>
+    <div class="error" ng-message="minlength">
+        <i class="ion-information-circled"></i> Minimum length of this field is 5 characters!
+    </div>
+    <div class="error" ng-message="maxlength">
+        <i class="ion-information-circled"></i> Maximum length of this field is 20 characters!
+    </div>
+</script>
+<style>
+    img {
+        width: 100%;
+        height: auto;
+        max-height: 100px;
+    }
+</style>
+
+<script id="error-list.html" type="text/ng-template">
+    <div class="error" ng-message="required">
+        <i class="ion-information-circled"></i> This field is required!
+    </div>
+    <div class="error" ng-message="minlength">
+        <i class="ion-information-circled"></i> Minimum length of this field is 5 characters!
+    </div>
+    <div class="error" ng-message="maxlength">
+        <i class="ion-information-circled"></i> Maximum length of this field is 20 characters!
+    </div>
+</script>

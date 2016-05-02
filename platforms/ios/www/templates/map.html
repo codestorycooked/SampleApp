@@ -1,0 +1,14 @@
+<ion-view view-title="Map">
+    <ion-content class="padding">
+
+        <!-- <button class="button button-full positive-bg" ng-click="vm.getDrivingDirection()">Open in Maps</button>  -->
+        <ui-gmap-google-map disable-default-u-i="true" data-tap-disabled='true' center='vm.map.center' zoom='vm.map.zoom'>
+            <ui-gmap-marker idkey="vm.marker.id" coords="vm.marker.coords" options="vm.marker.options" click="vm.getDrivingDirection()" events="vm.marker.events">
+                <ui-gmap-window options="windowOptions" closeclick="vm.windowCloseClick()">
+                    <div>{{vm.name}}</div>
+                </ui-gmap-window>
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+
+    </ion-content>
+</ion-view>

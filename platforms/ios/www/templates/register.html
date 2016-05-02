@@ -1,0 +1,50 @@
+<ion-view title="Register">
+    <ion-content>
+        <div style="height:150px;padding-top:20px;color:white;text-align:center;" class="assertive-bg">
+            <h2>Welcome to App</h2>
+            <p>Your cool tag line</p>
+
+        </div>
+        <form name="registerForm" novalidate="">
+            <div class="list">
+                <!--Email-->
+                <label class="item item-input" ng-class="{ 'has-errors' : registerForm.Email.$invalid, 'no-errors' : registerForm.Email.$valid}">
+                    <span class="input-label">Email</span>
+                    <input type="email" name="Email" ng-model="vm.registerForm.UserName" required ng-minlength="3">
+                </label>
+                <div class="error-container" ng-show="registerForm.Email.$error" ng-messages="registerForm.Email.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+
+                <!--Password-->
+                <label class="item item-input" ng-class="{ 'has-errors' : registerForm.Password.$invalid, 'no-errors' : registerForm.Password.$valid}">
+                    <span class="input-label">Password</span>
+                    <input type="password" name="Password" ng-model="vm.registerForm.Password" required ng-minlength="3">
+                </label>
+                <div class="error-container" ng-show="registerForm.Password.$error" ng-messages="registerForm.Password.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+
+
+
+            </div>
+            <button type="submit" class="button button-full" ng-click="vm.signUp()" ng-disabled="registerForm.$invalid">
+                Submit
+            </button>
+        </form>
+    </ion-content>
+</ion-view>
+<script id="error-list.html" type="text/ng-template">
+    <div class="error" ng-message="required">
+        <i class="ion-information-circled"></i>
+        This field is required!
+    </div>
+    <div class="error" ng-message="minlength">
+        <i class="ion-information-circled"></i>
+        Minimum length of this field is 5 characters!
+    </div>
+    <div class="error" ng-message="maxlength">
+        <i class="ion-information-circled"></i>
+        Maximum length of this field is 20 characters!
+    </div>
+</script>

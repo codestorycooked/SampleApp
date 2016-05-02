@@ -1,0 +1,103 @@
+<ion-modal-view view-title="Login"   class="stable-bg" ng-controller="LoginController as vm">
+  <ion-header-bar class="assertive-bg">
+        <button href="#" class="buttons button-clear " style="color:white;" ng-click="vm.close()">
+              &nbsp;Close</button>
+        <h1 style="color:white;text-align:center" class="title">Login</h1>
+        
+    </ion-header-bar>
+  <ion-content class="assertive-bg">
+    <div class="padding ">
+      <h1>
+        <!--<i class="stable ion-android-restaurant"></i>-->
+
+      </h1><br>
+
+      <h2 class="stable">Welcome <br/>Name Your Price</h2>
+
+      <!--<p class="stable">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+
+      <p class="stable">Please sign in using following providers.</p>-->
+    </div>
+
+    <div class="padding row">
+      <div class="col facebook-login icon-left social-button" ng-click="vm.facebookSignIn()">
+        <i class="icon ion-social-facebook"></i>
+        Facebook
+      </div>
+      <div class="col twitter-login icon-left social-button" ng-click="vm.googleLogin()">
+        <i class="icon ion-social-google"></i>
+        Google +
+      </div>
+    </div>
+
+
+    <h4 style="text-align:center" class="stable">OR</h4>
+
+    <div class="row text-center">
+      <div class="col col-50" ng-click="vm.showLogin();">
+        <h5 style="color:black">Login</h3>
+      </div>
+      <div class="col col-50" ng-click="vm.showRegister();">
+        <h5 style="color:black">Register</h3>
+      </div>
+    </div>
+    <form name="loginForm" novalidate="">
+      <div class="list ">
+        <label ng-if="vm.isRegister" class="item item-input"
+               ng-class="{ 'has-errors' : loginForm.DisplayName.$invalid, 'no-errors' : loginForm.DisplayName.$valid}">
+          <span class="input-label">Name</span>
+          <input type="text" name="DisplayName" ng-model="vm.loginForm.displayName" required ng-minlength="3">
+        </label>
+
+        <div class="error-container" ng-show="loginForm.DisplayName.$error" ng-messages="loginForm.DisplayName.$error">
+          <div ng-messages-include="error-list.html"></div>
+        </div>
+        <!--Email-->
+        <label class="item item-input"
+               ng-class="{ 'has-errors' : loginForm.Email.$invalid, 'no-errors' : loginForm.Email.$valid}">
+          <span class="input-label">Email</span>
+          <input type="email" name="Email" ng-model="vm.loginForm.userName" required ng-minlength="3">
+        </label>
+
+        <div class="error-container" ng-show="loginForm.Email.$error" ng-messages="loginForm.Email.$error">
+          <div ng-messages-include="error-list.html"></div>
+        </div>
+
+        <!--Password-->
+        <label class="item item-input"
+               ng-class="{ 'has-errors' : loginForm.Password.$invalid, 'no-errors' : loginForm.Password.$valid}">
+          <span class="input-label">Password</span>
+          <input type="password" name="Password" ng-model="vm.loginForm.password" required ng-minlength="3">
+        </label>
+
+        <div class="error-container" ng-show="loginForm.Password.$error" ng-messages="loginForm.Password.$error">
+          <div ng-messages-include="error-list.html"></div>
+        </div>
+      </div>
+
+    </form>
+    <div class="row" style="text-align:center">
+      <div class="col">
+        <button ng-if="!vm.isRegister" class="button button-full button-royal" style="border-radius:2px;"
+                ng-click="vm.loginEmail()" ng-disabled="loginForm.$invalid">
+          Login
+        </button>
+        <button ng-if="vm.isRegister" class="button button-royal button-full" style="border-radius:2px;"
+                ng-disabled="loginForm.$invalid" ng-click="vm.signUp()">Register
+        </button>
+
+
+      </div>
+    </div>
+
+    <div class="padding row">
+
+      <div class="col" style="text-align:center">
+        <span class="stable" ng-click="vm.resetPassworCall()">Forgot password?</span>
+
+        <p class="padding stable">We will never post anything without your permission</p>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-modal-view>

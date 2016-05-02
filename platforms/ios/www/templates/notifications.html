@@ -1,0 +1,16 @@
+<ion-view title="Notifications">
+    <ion-content>
+        
+        <ion-list ng-repeat="notification in vm.notification">
+            <a class="item" href="#/app/chat?fromUser={{notification.toUserID}}&jobID=1&toUser={{notification.fromUserID}}&cid={{notification.conversationID}}">
+                <p><i class="fa fa-lg fa-comment assertive"></i>{{notification.message}} </p>
+            </a>
+            <!--<ion-item>
+                <p><i class="fa fa-lg fa-star assertive"></i> Manoj shows interest</p>
+            </ion-item>
+            <ion-item>
+                <p><i class="fa fa-lg fa-comment assertive"></i> You have recieved message</p>
+            </ion-item>-->
+        </ion-list>
+    </ion-content>
+</ion-view>

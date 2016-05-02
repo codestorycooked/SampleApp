@@ -1,0 +1,80 @@
+<ion-view view-title="View My Jobs">
+
+    <ion-tabs class="tabs-dark tabs-top tabs-icon-top">
+
+        <ion-tab title="My Jobs" ng-click="vm.loadPage(1)" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+            <!-- Tab 1 content -->
+            <!-- Tab 1 content -->
+        </ion-tab>
+
+        <ion-tab title="My Bids" ng-click="vm.loadPage(2)" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+            <!-- Tab 2 content -->
+        </ion-tab>
+
+        <ion-tab title="Favorites" ng-click="vm.loadPage(3)" icon-on="ion-star" icon-off="ion-ios-star-outline">
+            <!-- Tab 3 content -->
+        </ion-tab>
+
+</ion-tabs>
+        <ion-content>
+
+            <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+            </ion-refresher>
+
+            <br/>
+            <br/>
+            <br/>
+            <ion-list ng-show="vm.jobs">
+                <p class="padding text-center" ng-if="vm.data.length==0">Nothing found!!</p>
+                <ion-item ng-repeat="item in vm.data" class="item item-thumbnail-left" href="#/app/jobdetails?id={{item.id}}&user=true">
+                    <img ng-src="{{vm.getPicturePath(item.mediaGalleries[0].fileName)}}">
+
+                    <h2>{{item.jobTitle}}</h2>
+
+                    <p>{{item.jobDescription}}</p>
+
+                    <i style="font-size:small" class="ion-clock assertive"></i> <span style="font-size:small" am-time-ago="item.createDate"></span>
+                    <!--<p >{{item.createDate | date}}</p>-->
+                </ion-item>
+
+            </ion-list>
+            <ion-list ng-show="vm.bids">
+                <p class="padding text-center" ng-if="vm.bidsdata.length==0">Nothing found!!</p>
+                <a ng-repeat="item in vm.bidsdata" class="item " href="#/app/jobdetails?id={{item.id}}&user=true">
+
+
+                    <h2>{{item.job.jobTitle}}</h2>
+
+                    <p>{{item.job.jobDescription}}</p>
+
+                    <i style="font-size:small" class="ion-clock assertive"></i> <span style="font-size:small" am-time-ago="item.dateAdded"></span>
+                    <!--<p >{{item.createDate | date}}</p>-->
+                </a>
+
+            </ion-list>
+            <ion-list ng-show="vm.fav">
+                <p class="padding text-center" ng-if="vm.favdata.length==0">Nothing found in Favorites!!</p>
+                <a ng-repeat="item in  vm.favdata" class="item item-thumbnail-left" href="#/app/jobdetails?id={{item.job.id}}&user=true">
+                    <img ng-src="{{vm.getPicturePath(item.job.mediaGalleries[0].fileName)}}">
+
+                    <h2>{{item.job.jobTitle}}</h2>
+
+                    <p>{{item.job.jobDescription}}</p>
+
+                    <i style="font-size:small" class="ion-clock assertive"></i> <span style="font-size:small" am-time-ago="item.createdDate"></span>
+                    <!--<p >{{item.createDate | date}}</p>-->
+                </a>
+
+            </ion-list>
+
+
+
+        </ion-content>
+
+        <!--<nav mfb-menu position="br" effect="zoomin" label="Menu" active-icon="ion-edit" resting-icon="ion-plus-round" toggling-method="hover">
+        <button mfb-button ng-click="vm.loadPage(1)" icon="ion-ios-filing" label="My Jobs"></button>
+        <button mfb-button ng-click="vm.loadPage(2)" icon="ion-ios-clock" label="My Bids"></button>
+        <button mfb-button ng-click="vm.loadPage(3)" icon="ion-star" label="Favorites"></button>
+    </nav>-->
+
+</ion-view>

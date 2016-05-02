@@ -1,0 +1,61 @@
+<ion-view view-title="Request Feed">
+    <ion-nav-buttons side="secondary">
+        <a class="button button-clear" ng-click="openModal()"> <i style="padding-top: 15px;" class="fa fa-lg fa-filter"></i>
+            <div class="option"> </div>
+        </a>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar bar-subheader item-input-inset padding">
+        <label class="item-input-wrapper search">
+            <i class="icon ion-search placeholder-icon" required></i>
+            <input placeholder="Enter Request you are looking for." ng-model="vm.searchTerm" type="text">
+
+        </label>
+        <button class="button button-clear" ng-click="vm.search()">
+            <i style="color:grey" class="icon ion-search"></i>
+        </button>
+    </ion-header-bar>
+    <ion-content lazy-scroll on-infinite-scroll="vm.loadMore()">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh=" vm.refresh()">
+        </ion-refresher>
+        <!--// <p ng-if="vm.data.length===0" class="padding text-center">No Jobs found!</p>-->
+        <ion-list can-swipe="true"  class="animated bounceInLeft" >
+            <ion-item class="item  feed-css item-thumbnail-left " ng-repeat="item in vm.data" href="#/app/jobdetails?id={{item.id}}&user=false">
+
+                <img style="border-radius:50%" image-lazy-loader="lines" image-lazy-src="{{vm.imagePath+item.filename}}"  lazy-scroll-resize="true">
+                <h2>{{item.jobTitle}}</h2>
+
+                <p>{{item.jobDescription}}</p>
+
+                <span> 
+                <span style="font-size:medium;font-weight:600">{{item.laborCost| number:0}}</span> <i style="font-size:medium"
+                class="ion-social-usd assertive"></i> </span>
+                <br/>
+                <span>  <i   style="font-size:small" class="ion-eye assertive"></i> <span style="font-size:small">{{item.totalViews}}</span>
+
+
+                <span ng-show="!vm.showDistance">  <i   style="font-size:small" class="ion-clock assertive"></i> <span style="font-size:small" am-time-ago="item.createDate"></span></span>
+
+                <span ng-show="vm.showDistance">  <i   style="font-size:small" class="ion-ios-location assertive"></i> <span style="font-size:small">{{item.distance * 0.62137 | number:0}} Miles</span></span>
+              
+                <!--<p >{{item.createDate | date}}</p>-->
+                <ion-option-button class="button-positive" ng-click="vm.share(item)">
+                    <i class='fa fa-lg fa-share' /></i>
+                </ion-option-button>
+                <ion-option-button class="button-assertive" ng-click="vm.favorite(item)">
+                    <i class='fa fa-lg fa-star'></i>
+
+            </ion-item>
+
+        </ion-list>
+        <ion-infinite-scroll icon="ion-loading-c" on-infinite="vm.loadMore()" distance="1%">
+        </ion-infinite-scroll>
+
+    </ion-content>
+     <nav ng-hide="vm.isUser" mfb-menu position="br" effect="zoomin" label="Menu" active-icon="ion-minus" resting-icon="ion-ios-list-outline"
+    toggling-method="click">
+        <!--<button mfb-button ng-click="vm.showInterested()" icon="ion-speakerphone" label="Interested"></button>-->
+        <button mfb-button ng-click="vm.getlocation()" icon="ion-loop" label="Request Listing"></button>
+         <button mfb-button ng-click="vm.createjob()" icon="ion-plus" label="Add Listing"></button>
+        
+    </nav>
+</ion-view>

@@ -1,0 +1,33 @@
+<ion-modal-view title="Questions" ng-controller="QuestionController as vm">
+  <ion-header-bar class="assertive-bg">
+    <h1 style="color:white" class="title">Questions</h1>
+    <button class="buttons button-clear"  ng-click="vm.closeModal()">Close</button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <p class="padding text-center">Your question will be sent to user. You can view existing questions.</p>
+
+      <label class="item item-input">
+        <textarea placeholder="Your Question"></textarea>
+      </label>
+    </div>
+    <button class="button button-full button-assertive">Submit</button>
+    <ul class="list">
+      <li class="item">
+        Question 1
+      </li>
+      <li class="item">
+        Question 1
+        <p>Answer Answer Answer Answer Answer Answer</p>
+      </li>
+      <li class="item">
+        Question 1
+        <p>Answer Answer Answer Answer Answer Answer</p>
+      </li>
+      <li class="item">
+        Question 1
+        <p>Answer Answer Answer Answer Answer Answer</p>
+      </li>
+    </ul>
+  </ion-content>
+</ion-modal-view>
